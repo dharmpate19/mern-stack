@@ -1,15 +1,21 @@
 const express = require("express");
-const authRouter = require("./routes/contactRoutes");
+const contactRouter = require("./routes/contactRoutes");
+const userRouter = require("./routes/userRoutes");
 const errorHanlder = require("./middleware/errorHandler");
-require("dotenv").config();
+const dbConnect = require("./config/dbConnection");
+const dotenv = require("dotenv").config();
 
+
+dbConnect();
 const app = express();
 
-app.use(express.json())
+
+app.use(express.json());
 
 const PORT = process.env.PORT || 3000
 
-app.use("/api/contacts", authRouter);
+app.use("/api/contacts", contactRouter);
+app.use("/api/user", userRouter);
 app.use(errorHanlder)
 
-app.listen(PORT, () => console.log("Server is running on PORT:3000"))
+app.listen(PORT, () => console.log("Server is running on PORT:", PORT))
