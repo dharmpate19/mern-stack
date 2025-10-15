@@ -4,6 +4,7 @@ const userRouter = require("./routes/userRoutes");
 const errorHanlder = require("./middleware/errorHandler");
 const dbConnect = require("./config/dbConnection");
 const dotenv = require("dotenv").config();
+const cookieParser = require("cookie-parser")
 
 
 dbConnect();
@@ -11,6 +12,7 @@ const app = express();
 
 
 app.use(express.json());
+app.use(cookieParser())
 
 const PORT = process.env.PORT || 3000
 

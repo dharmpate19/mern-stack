@@ -35,6 +35,10 @@ const getContact = asyncHandler(async (req,res) => {
         res.status(404);
         throw new Error("Contact not found")
     };
+    if(contact.user_id.toString() !== req.user.userId){
+    res.status(403);
+    throw new Error("User do not have permission to Delete other user contacts");
+    }
     res.status(200).json(contact)
 });
 
