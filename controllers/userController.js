@@ -57,9 +57,9 @@ const loginUser = asyncHandler(async (req,res) => {
 });
 
 //@Desc Current User Info
-//@route /user/login/
+//@route /user/current/
 const currentUser = asyncHandler(async (req,res,next) => {
-    res.json({message : "Current User"})
+    res.json(req.user)
 });
 
 
