@@ -1,0 +1,8 @@
+-To use react we have to add two library react and react-dom. react library is global we can use that for both web and app but react-dom is only used for web.
+-To use react in file we add ReactDOM.createRoot(container). Every thing that we create using react that is added in this container.
+-after that we use .render() ReactDOM.createROOT(container).render("Hello World"). render() help us to render something inside at container.
+-React does nto use HTML it use JSX and browser does not derstand JSX so we have to conver JSX into js and to conver that we use babel. To use that we have to add bable library and add text type of script as text/babel when we add attribute type="text/babel" this attribute tell javascript to conver all jsx into js.
+-To display multiple element in render we can create sinle element that has one container and holds all eelement we can also use array .render([paragraph, button]).
+-In react the component name must start with capital letter i.e PascalCase.
+-We can send data using porps.
+-To use if else statement in jsx we can use ternary operation or { value === true && (displayValue)} the display value is shown.
