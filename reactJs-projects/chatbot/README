@@ -6,3 +6,10 @@
 -In react the component name must start with capital letter i.e PascalCase.
 -We can send data using porps.
 -To use if else statement in jsx we can use ternary operation or { value === true && (displayValue)} the display value is shown.
+-We use {} to send data in porp not "" because curly brackets helps us to give the value.
+-In react when we use useState we do not want to remove revious data we want to keep copy of previous data for that we use [...previousState]
+=(..spreadOperator) basically takes value from array and create new array.
+-To add new value we just have to add new value after previous state setState([...previousState, newvalue])
+-Lifting state up means lifitn state to outer component like here we lift state to app.
+-In react state does not update immediately it update after the code is fineshed.
+-When we send chatmessages first we use state to update chate messages with our message then we send use state to update message with chatbot message but this will not work becaue state willonly update after ode finishes so it will only update the last state message to counter this we stare our previosu state in variable and use that variable as previosu state for new state.
