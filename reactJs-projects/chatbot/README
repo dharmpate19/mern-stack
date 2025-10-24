@@ -13,3 +13,4 @@
 -Lifting state up means lifitn state to outer component like here we lift state to app.
 -In react state does not update immediately it update after the code is fineshed.
 -When we send chatmessages first we use state to update chate messages with our message then we send use state to update message with chatbot message but this will not work becaue state willonly update after ode finishes so it will only update the last state message to counter this we stare our previosu state in variable and use that variable as previosu state for new state.
+-Async means it returns a promise and promise means it is not available now but it will be available in future.
