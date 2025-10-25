@@ -1,102 +1,3 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>React Basics</title>
-    <style>
-      .chatbot-container {
-        height: calc(100vh - 80px);
-      }
-      .send-button {
-        background-color: rgb(25, 135, 84);
-        color: white;
-        padding: 14.5px 20px;
-        border: none;
-        border-radius: 10px;
-        margin-left: 10px;
-        cursor: pointer;
-      }
-      .chat-input {
-        font-size: 15px;
-        padding: 12px 15px;
-        border-width: 1px;
-        border-radius: 10px;
-        margin-right: 10px;
-      }
-      .input-container {
-        display: flex;
-        margin: 0 auto;
-        max-width: 600px;
-        width: 100%;
-      }
-      .input-container input {
-        width: 100%;
-      }
-      .welcome-message {
-        color: rgb(120, 120, 120);
-        text-align: center;
-        margin-top: 0;
-      }
-      .chat-message-container {
-        max-width: 600px;
-        width: 100%;
-        margin: 0 auto;
-      }
-      .chat-message {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 20px 0px;
-        gap: 20px;
-        width: 100%;
-      }
-      .chat-message-user {
-        justify-content: right;
-      }
-      .chat-message-robot {
-        justify-content: left;
-      }
-      .chat-message-contents {
-        background-color: rgb(238, 238, 238);
-        padding: 15px 20px;
-        border-radius: 10px;
-        max-width: 300px;
-        margin-top: 0;
-        margin-bottom: 0;
-        overflow-wrap: break-word;
-      }
-      .input-controller-text {
-        display: flex;
-        justify-content: end;
-        border: none;
-        background: none;
-        color: rgb(25, 135, 84);
-        cursor: pointer;
-        text-decoration: underline;
-        margin: 0 auto;
-        font-size: 20px;
-      }
-      .input-chatbot-container {
-        display: flex;
-        flex-direction: column;
-        height: calc(100vh - 150px);
-      }
-      .input-chatbot-container.input-bottom {
-        justify-content: space-between;
-      }
-    </style>
-  </head>
-
-  <body>
-    <div class="js-container"></div>
-    <script src="./react-basics.js"></script>
-    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
-
-    <script src="https://unpkg.com/supersimpledev/react.js"></script>
-    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
-    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
-
-    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
-    <script type="text/babel">
       function ChatInput({ chatMessages, setChatMessages }) {
         const [inputText, setInputText] = React.useState("");
         const [isLoading, setIsLoading] = React.useState("");
@@ -185,8 +86,15 @@
       }
 
       function ChatMessages({ chatMessages }) {
+        const chatMessagesRef = React.useRef(null)
+        React.useEffect(() => {
+          const containerElemn = chatMessagesRef.current;
+          if(containerElemn) {
+          containerElemn.scrollTop = containerElemn.scrollHeight;
+          }
+        }, [chatMessages])
         return (
-          <div className="chat-message-container">
+          <div ref={chatMessagesRef} className="chat-message-container">
             {chatMessages.map((chatMessage) => {
               return (
                 <ChatMessage
@@ -256,6 +164,4 @@
       const container = document.querySelector(".js-container");
       const root = ReactDOM.createRoot(container);
       root.render(<App />);
-    </script>
-  </body>
-</html>
+    

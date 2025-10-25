@@ -1,3 +1,5 @@
+Note : - This is my project where i tried to understand how does react actually work so i have not used npx or npm for downloading reat library.
+
 -To use react we have to add two library react and react-dom. react library is global we can use that for both web and app but react-dom is only used for web.
 -To use react in file we add ReactDOM.createRoot(container). Every thing that we create using react that is added in this container.
 -after that we use .render() ReactDOM.createROOT(container).render("Hello World"). render() help us to render something inside at container.
@@ -14,3 +16,4 @@
 -In react state does not update immediately it update after the code is fineshed.
 -When we send chatmessages first we use state to update chate messages with our message then we send use state to update message with chatbot message but this will not work becaue state willonly update after ode finishes so it will only update the last state message to counter this we stare our previosu state in variable and use that variable as previosu state for new state.
 -Async means it returns a promise and promise means it is not available now but it will be available in future.
+-To scroll to teh bottom we use scrollTop = scrollHeight
