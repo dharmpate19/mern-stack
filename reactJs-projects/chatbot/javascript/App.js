@@ -77,7 +77,7 @@
             {sender === "robot" && (
               <img src="./images/chatbot.png" alt="user image" width="50" />
             )}
-            <span className="chat-message-contents">{message}</span>
+            <span className="chat-message-contents">{message === "...Loading" ? <div className="dot-loader"></div> : message}</span>
             {sender === "user" && (
               <img src="./images/user.png" alt="user image" width="50" />
             )}
