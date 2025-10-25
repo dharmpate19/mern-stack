@@ -2,6 +2,88 @@
 <html>
   <head>
     <title>React Basics</title>
+    <style>
+      .chatbot-container {
+        height: calc(100vh - 80px);
+      }
+      .send-button {
+        background-color: rgb(25, 135, 84);
+        color: white;
+        padding: 14.5px 20px;
+        border: none;
+        border-radius: 10px;
+        margin-left: 10px;
+        cursor: pointer;
+      }
+      .chat-input {
+        font-size: 15px;
+        padding: 12px 15px;
+        border-width: 1px;
+        border-radius: 10px;
+        margin-right: 10px;
+      }
+      .input-container {
+        display: flex;
+        margin: 0 auto;
+        max-width: 600px;
+        width: 100%;
+      }
+      .input-container input {
+        width: 100%;
+      }
+      .welcome-message {
+        color: rgb(120, 120, 120);
+        text-align: center;
+        margin-top: 0;
+      }
+      .chat-message-container {
+        max-width: 600px;
+        width: 100%;
+        margin: 0 auto;
+      }
+      .chat-message {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px 0px;
+        gap: 20px;
+        width: 100%;
+      }
+      .chat-message-user {
+        justify-content: right;
+      }
+      .chat-message-robot {
+        justify-content: left;
+      }
+      .chat-message-contents {
+        background-color: rgb(238, 238, 238);
+        padding: 15px 20px;
+        border-radius: 10px;
+        max-width: 300px;
+        margin-top: 0;
+        margin-bottom: 0;
+        overflow-wrap: break-word;
+      }
+      .input-controller-text {
+        display: flex;
+        justify-content: end;
+        border: none;
+        background: none;
+        color: rgb(25, 135, 84);
+        cursor: pointer;
+        text-decoration: underline;
+        margin: 0 auto;
+        font-size: 20px;
+      }
+      .input-chatbot-container {
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 150px);
+      }
+      .input-chatbot-container.input-bottom {
+        justify-content: space-between;
+      }
+    </style>
   </head>
 
   <body>
@@ -15,19 +97,19 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-      function ChatInput({chatMessages, setChatMessages}) {
+      function ChatInput({ chatMessages, setChatMessages }) {
         const [inputText, setInputText] = React.useState("");
         const [isLoading, setIsLoading] = React.useState("");
         function handleChange(e) {
           setInputText(e.target.value);
         }
         async function sendMessage() {
-          if(isLoading || inputText === "" ){
+          if (isLoading || inputText === "") {
             return;
           }
           setInputText("");
           setIsLoading(true);
-          const newChatMessages= [
+          const newChatMessages = [
             ...chatMessages,
             {
               id: crypto.randomUUID(),
@@ -36,11 +118,14 @@
             },
           ];
 
-          setChatMessages([...newChatMessages, {
-            id: crypto.randomUUID(),
+          setChatMessages([
+            ...newChatMessages,
+            {
+              id: crypto.randomUUID(),
               message: "...Loading",
               sender: "robot",
-          }]);
+            },
+          ]);
           const response = await Chatbot.getResponseAsync(inputText);
           setChatMessages([
             ...newChatMessages,
@@ -50,29 +135,30 @@
               sender: "robot",
             },
           ]);
-          setIsLoading(false)
+          setIsLoading(false);
         }
 
         function handleKeyEvent(e) {
-          
-          if(e.key === "Enter"){
-            sendMessage()
-          } else if(e.key === "Escape"){
-            setInputText("")
+          if (e.key === "Enter") {
+            sendMessage();
+          } else if (e.key === "Escape") {
+            setInputText("");
           }
-          
         }
         return (
-          <>
+          <div className="input-container">
             <input
               placeholder="Send a message to Chatbot"
               size="30"
               onChange={handleChange}
               value={inputText}
-              onKeyDown = {handleKeyEvent}
+              onKeyDown={handleKeyEvent}
+              className="chat-input"
             />
-            <button onClick={sendMessage}>Send</button>
-          </>
+            <button className="send-button" onClick={sendMessage}>
+              Send
+            </button>
+          </div>
         );
       }
 
@@ -80,11 +166,17 @@
         let srcImage;
 
         return (
-          <div>
+          <div
+            className={
+              sender === "robot"
+                ? "chat-message chat-message-robot"
+                : "chat-message chat-message-user"
+            }
+          >
             {sender === "robot" && (
               <img src="./images/chatbot.png" alt="user image" width="50" />
             )}
-            <span>{message}</span>
+            <span className="chat-message-contents">{message}</span>
             {sender === "user" && (
               <img src="./images/user.png" alt="user image" width="50" />
             )}
@@ -92,10 +184,10 @@
         );
       }
 
-      function ChatMessages({chatMessages}) {
+      function ChatMessages({ chatMessages }) {
         return (
-          <>
-         {chatMessages.map((chatMessage) => {
+          <div className="chat-message-container">
+            {chatMessages.map((chatMessage) => {
               return (
                 <ChatMessage
                   key={chatMessage.id}
@@ -104,37 +196,59 @@
                 />
               );
             })}
-          </>
+          </div>
         );
       }
 
       function App() {
-        const [chatMessages, setChatMessages] = React.useState([
-          {
-            id: "id1",
-            message: "hello chatbot",
-            sender: "user",
-          },
-          {
-            id: "id2",
-            message: "Hello! How can I help you",
-            sender: "robot",
-          },
-          {
-            id: "id3",
-            message: "What is todays date?",
-            sender: "user",
-          },
-          {
-            id: "id5",
-            message: "Today is October 22",
-            sender: "robot",
-          },
-        ]);
+        const [chatMessages, setChatMessages] = React.useState([]);
+        const [inputTop, setInputTop] = React.useState(true);
+        function switchInputText() {
+          console.log("clicked");
+          if (!inputTop) {
+            setInputTop(true);
+          } else {
+            setInputTop(false);
+          }
+        }
         return (
           <>
-            <ChatInput chatMessages={chatMessages} setChatMessages={setChatMessages}/>
-            <ChatMessages chatMessages={chatMessages} />
+            <div className="chatbot-container">
+              <p className="welcome-message">
+                {chatMessages.length > 0
+                  ? ""
+                  : " Welcometo the chatbot project! Send a message using the textbox below."}
+              </p>
+              <div
+                className={
+                  inputTop
+                    ? "input-chatbot-container input-top"
+                    : "input-chatbot-container input-bottom"
+                }
+              >
+                {inputTop ? (
+                  <ChatInput
+                    chatMessages={chatMessages}
+                    setChatMessages={setChatMessages}
+                  />
+                ) : (
+                  ""
+                )}
+
+                <ChatMessages chatMessages={chatMessages} />
+                {inputTop ? (
+                  ""
+                ) : (
+                  <ChatInput
+                    chatMessages={chatMessages}
+                    setChatMessages={setChatMessages}
+                  />
+                )}
+              </div>
+            </div>
+            <button className="input-controller-text" onClick={switchInputText}>
+              Move textbox to {inputTop ? "bottom" : "top"}
+            </button>
           </>
         );
       }
