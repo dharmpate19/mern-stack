@@ -1,11 +1,20 @@
 .chatbot-container {
   height: calc(100vh - 50px);
-  padding: 20px;
 }
 
 .send-button {
   background-color: rgb(25, 135, 84);
   color: white;
+  padding: 14.5px 20px;
+  border: none;
+  border-radius: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.clear-button {
+  background-color: rgb(233, 235, 234);
+  color: rgb(0, 0, 0);
   padding: 14.5px 20px;
   border: none;
   border-radius: 10px;
@@ -67,7 +76,7 @@
   background-color: rgb(238, 238, 238);
   padding: 15px 20px;
   border-radius: 10px;
-  max-width: 150px;
+  max-width: 300px;
   margin-top: 0;
   margin-bottom: 0;
   overflow-wrap: break-word;
@@ -109,6 +118,32 @@
   animation: dot-flash 1s infinite linear;
 }
 
+.chat-message-contents > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-message-contents span:first-child {
+  font-size: 15px;
+  line-height: 1.5;
+  width: 100%;
+}
+
+/* Timestamp styling */
+.chat-time {
+  font-size: 11px;
+
+}
+
+.chat-message-user .chat-time {
+  color: grey;
+}
+
+.chat-message-robot .chat-time {
+  color: grey;
+}
+
+
 @keyframes dot-flash {
   0% {
     background-position: 0% 50%, 50% 50%, 100% 50%;
@@ -125,5 +160,14 @@
 
   100% {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .chatbot-container{
+    padding: 20px;
+  }
+  .chat-message-contents{
+    max-width: 150px;
   }
 }
