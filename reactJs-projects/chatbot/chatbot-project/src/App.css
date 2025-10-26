@@ -1,9 +1,6 @@
-body {
-  margin: 0;
-}
-
 .chatbot-container {
   height: calc(100vh - 50px);
+  padding: 20px;
 }
 
 .send-button {
@@ -70,7 +67,7 @@ body {
   background-color: rgb(238, 238, 238);
   padding: 15px 20px;
   border-radius: 10px;
-  max-width: 300px;
+  max-width: 150px;
   margin-top: 0;
   margin-bottom: 0;
   overflow-wrap: break-word;
