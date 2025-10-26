@@ -1,7 +1,9 @@
 import RobotProfileImage from "../assets/chatbot.png";
 import UserProfileImage from "../assets/user.png";
+import dayjs from 'dayjs'
 
 function ChatMessage({ message, sender }) {
+  const time = dayjs().valueOf();
   return (
     <div
       className={
@@ -17,7 +19,10 @@ function ChatMessage({ message, sender }) {
         {message === "...Loading" ? (
           <div className="dot-loader"></div>
         ) : (
-          message
+          <div>
+          <span>{message}</span>
+            <span className="chat-time">{dayjs(time).format('h:mma')}</span>
+            </div>
         )}
       </span>
       {sender === "user" && (
