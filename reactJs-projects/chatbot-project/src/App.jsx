@@ -7,7 +7,7 @@ import { Chatbot } from "supersimpledev";
 function App() {
   const [chatMessages, setChatMessages] = useState(() => {
     const saved = localStorage.getItem("chatMessages");
-  return saved ? JSON.parse(saved) : [];
+    return saved ? JSON.parse(saved) : [];
   });
   const [inputTop, setInputTop] = useState(true);
   function switchInputText() {
