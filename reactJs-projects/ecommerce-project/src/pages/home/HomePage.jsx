@@ -1,10 +1,11 @@
 import React from 'react'
 import './HomePage.css'
-import Header from '../components/header/Header'
+import Header from '../../components/header/Header'
 
 const HomePage = () => {
   return (
     <>
+    <link rel="icon" type="image/svg+xml" href="/images/home-favicon.png" />
     <title>Ecommerce Project</title>
     <Header/>
     <div className="home-page">

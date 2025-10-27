@@ -1,10 +1,11 @@
 import React from 'react'
 import './TrackingPage.css'
-import Header from '../components/header/Header'
+import Header from '../../components/header/Header'
 
 const TrackingPage = () => {
   return (
     <>
+    <link rel="icon" type="image/svg+xml" href="/images/tracking-favicon.png" />
     <title>Tracking</title>
     <Header/>
     <div className="tracking-page">

@@ -1,10 +1,11 @@
 import React from 'react'
 import './OrdersPage.css'
-import Header from '../components/header/Header'
+import Header from '../../components/header/Header'
 
 const OrdersPage = () => {
   return (
     <>
+    <link rel="icon" type="image/svg+xml" href="/images/orders-favicon.png" />
     <title>Orders</title>
     <Header/>
     <div className="orders-page">
