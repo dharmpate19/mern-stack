@@ -4,6 +4,7 @@ import HomePage from './pages/home/HomePage'
 import {Routes, Route} from 'react-router'
 import OrdersPage from './pages/orders/OrdersPage'
 import TrackingPage from './pages/tracking/TrackingPage'
+import { NotFoundPage } from './pages/notfoundpage/NotFoundPage'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
       <Route path="/checkout" element={<CheckoutPage/>}/>
       <Route path='/orders' element={<OrdersPage/>}/>
       <Route path='/tracking' element={<TrackingPage/>}/>
+      <Route path='*' element={<NotFoundPage/>}/>
     </Routes>
     </>
   )
