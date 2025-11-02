@@ -5,10 +5,10 @@ import Header from '../../components/header/Header'
 
 
 
-const HomePage = () => {
+const HomePage = ({cart}) => {
 
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
+  
 
   useEffect(() =>{
     axios.get("http://localhost:3000/api/products")
@@ -18,15 +18,8 @@ const HomePage = () => {
     .catch((err) => 
       console.log("Error Fteching the Data: ", err))
 
-    //To get cart Items data
-    axios.get("http://localhost:3000/api/cart-items")
-    .then((res) => {
-      setCart(res.data)
-    })
-    .catch((err) => 
-      console.log("Error Fteching the Data: ", err))
-    
     },[])
+    
   return (
     <>
     <link rel="icon" type="image/svg+xml" href="/images/home-favicon.png" />

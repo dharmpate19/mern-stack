@@ -5,14 +5,27 @@ import {Routes, Route} from 'react-router'
 import OrdersPage from './pages/orders/OrdersPage'
 import TrackingPage from './pages/tracking/TrackingPage'
 import { NotFoundPage } from './pages/notfoundpage/NotFoundPage'
+import { useEffect, useState } from 'react'
+import axios from 'axios';
 
 function App() {
 
+  const [cart, setCart] = useState([]);
+  
+  useEffect(() =>{
+    //To get cart Items data
+    axios.get("/api/cart-items")
+    .then((res) => {
+      setCart(res.data)
+    })
+    .catch((err) => 
+      console.log("Error Fteching the Data: ", err))
+    }, [])
   return (
     <>
     <Routes>
-      <Route path="/" element={<HomePage/>}/>
-      <Route path="/checkout" element={<CheckoutPage/>}/>
+      <Route path="/" element={<HomePage cart={cart}/>} />
+      <Route path="/checkout" element={<CheckoutPage cart={cart}/>} />
       <Route path='/orders' element={<OrdersPage/>}/>
       <Route path='/tracking' element={<TrackingPage/>}/>
       <Route path='*' element={<NotFoundPage/>}/>
