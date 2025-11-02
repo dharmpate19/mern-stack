@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import './HomePage.css'
 import Header from '../../components/header/Header'
 
@@ -9,11 +10,9 @@ const HomePage = () => {
   const [products, setProducts] = useState([])
 
   useEffect(() =>{
-    fetch("http://localhost:3000/api/products").then( (res) => {
-      return res.json()
-    })
-    .then((data) => {
-      setProducts(data)
+    axios.get("http://localhost:3000/api/products")
+    .then((res) => {
+      setProducts(res.data)
     })
     .catch((err) => 
       console.log("Error Fteching the Data: ", err)
