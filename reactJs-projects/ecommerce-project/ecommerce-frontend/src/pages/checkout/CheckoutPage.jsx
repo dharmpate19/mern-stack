@@ -12,17 +12,15 @@ const CheckoutPage = ({ cart }) => {
   const [paymentSummary, setPaymentSummary] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("/api/delivery-options?expand=estimatedDeliveryTime")
-      .then((res) => setDeliveryOptions(res.data));
+    const getCheckoutData = async () => {  
+    let res = await axios.get("/api/delivery-options?expand=estimatedDeliveryTime")
+      setDeliveryOptions(res.data);
+    
     //Fetch Payment summary from the Backend API
-    axios
-      .get("/api/payment-summary")
-      .then((res) => setPaymentSummary(res.data))
-      .catch((error) => {
-        console.error("Error fetching payment summary:", error);
-      });
-
+     res = await axios.get("/api/payment-summary")
+      setPaymentSummary(res.data);
+    }
+    getCheckoutData();
     console.log("Payment Summary:", paymentSummary);
   }, []);
 

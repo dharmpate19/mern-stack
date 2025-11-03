@@ -13,12 +13,12 @@ const HomePage = ({cart}) => {
   
 
   useEffect(() =>{
-    axios.get("http://localhost:3000/api/products")
-    .then((res) => {
+
+    const getHomeData = async () =>{
+    const res = await axios.get("http://localhost:3000/api/products")
       setProducts(res.data)
-    })
-    .catch((err) => 
-      console.log("Error Fteching the Data: ", err))
+    }
+    getHomeData()
 
     },[])
     

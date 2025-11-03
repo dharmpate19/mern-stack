@@ -14,12 +14,12 @@ function App() {
   
   useEffect(() =>{
     //To get cart Items data
-    axios.get("/api/cart-items?expand=product")
-    .then((res) => {
+    const getCartData = async () =>{
+    const res = await axios.get("/api/cart-items?expand=product")
       setCart(res.data)
-    })
-    .catch((err) => 
-      console.log("Error Fteching the Data: ", err))
+    }
+    getCartData()
+
     }, [])
   return (
     <>
