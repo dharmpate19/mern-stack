@@ -1,7 +1,7 @@
 import  Header  from '../../components/header/Header';
 import './NotFoundPage.css';
 
-export function NotFoundPage() {
+export function NotFoundPage({cart}) {
   return (
     <>
     
@@ -11,7 +11,7 @@ export function NotFoundPage() {
 
       {/* Remember to add the <Header> so it looks like it's
       on the same website. */}
-      <Header />
+      <Header  cart={cart}/>
 
       {/* You can style this message however you want. */}
       <div className="not-found-message">

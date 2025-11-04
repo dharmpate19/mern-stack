@@ -21,8 +21,8 @@ const CheckoutPage = ({ cart }) => {
       setPaymentSummary(res.data);
     }
     getCheckoutData();
-    console.log("Payment Summary:", paymentSummary);
   }, []);
+  console.log("Payment Summary:", paymentSummary);
 
   return (
     <>
