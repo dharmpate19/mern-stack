@@ -7,7 +7,7 @@ import ProductGrid from './ProductGrid'
 
 
 
-const HomePage = ({cart}) => {
+const HomePage = ({cart, getCartData}) => {
 
   const [products, setProducts] = useState([]);
   
@@ -28,7 +28,7 @@ const HomePage = ({cart}) => {
     <title>Ecommerce Project</title>
     <Header cart={cart}/>
     <div className="home-page">
-      <ProductGrid products={products}/>
+      <ProductGrid products={products}  getCartData={getCartData}/>
     </div>
     </>
   )
