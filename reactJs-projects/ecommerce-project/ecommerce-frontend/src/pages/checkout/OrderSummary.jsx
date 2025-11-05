@@ -1,9 +1,12 @@
 import React from 'react'
 import dayjs from 'dayjs';
+import axios from 'axios';
 import { formatMoney } from '../../utils/money';
 import DeliveryOptions from './DeliveryOptions';
 
 const OrderSummary = ({cart, deliveryOptions, getCartData, refreshCartAndPayment}) => {
+
+  
   return (
     <div className="order-summary">
                 {deliveryOptions.length > 0 &&
@@ -12,6 +15,19 @@ const OrderSummary = ({cart, deliveryOptions, getCartData, refreshCartAndPayment
                       (deliveryOptions) =>
                         deliveryOptions.id === cartItem.deliveryOptionId
                     );
+                    const handleDelete = async () => {
+                      const userConfirm = confirm('Do you want to delet item form cart');
+                      if(userConfirm){
+                        await axios.delete(`/api/cart-items/${cartItem.productId}`);
+                        await getCartData();
+                      } else{
+                        return
+                      }
+                    }
+
+                    const handleUpdate = async() => {
+
+                    }
                     return (
                       <div key={cartItem.id} className="cart-item-container">
                         <div className="delivery-date">
@@ -41,10 +57,10 @@ const OrderSummary = ({cart, deliveryOptions, getCartData, refreshCartAndPayment
                                   {cartItem.quantity}
                                 </span>
                               </span>
-                              <span className="update-quantity-link link-primary">
+                              <span className="update-quantity-link link-primary" onClick={handleUpdate}>
                                 Update
                               </span>
-                              <span className="delete-quantity-link link-primary">
+                              <span className="delete-quantity-link link-primary" onClick={handleDelete}>
                                 Delete
                               </span>
                             </div>
