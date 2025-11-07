@@ -4,7 +4,7 @@ import { Fragment } from 'react';
 import { formatMoney } from '../../utils/money';
 import OrdersDetailGrid from './OrdersDetailGrid';
 
-const OrdersGrid = ({orders}) => {
+const OrdersGrid = ({orders, getCartData}) => {
   return (
     <div className="orders-grid">
           {orders.map((order) => {
@@ -30,7 +30,7 @@ const OrdersGrid = ({orders}) => {
                   </div>
                 </div>
 
-                <OrdersDetailGrid order={order}/>
+                <OrdersDetailGrid key={order.id} order={order} getCartData={getCartData}/>
               </div>
             );
           })}
