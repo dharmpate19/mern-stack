@@ -39,6 +39,15 @@ const CartItemDetail = ({
   const hanldeQuantityChange = (e) => {
     setQuantity(e.target.value);
   }
+
+  const handleKeyChange = (e) => {
+    if(e.key === 'Enter'){
+        handleUpdate();
+    } else if (e.key === 'Escape'){
+        setQuantity(cartItem.quantity);
+        setInputTab(false);
+    }
+  }
   return (
     <>
       <div className="cart-item-details-grid">
@@ -55,6 +64,7 @@ const CartItemDetail = ({
               {inputTab ? (
                 <input
                   value={quantity}
+                  onKeyDown={handleKeyChange}
                   onChange={hanldeQuantityChange}
                   type="number"
                   className="quantity-lable"
