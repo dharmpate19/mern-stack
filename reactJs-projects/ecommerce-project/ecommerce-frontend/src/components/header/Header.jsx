@@ -22,7 +22,12 @@ const Header = ({cart}) => {
     }
   }
   const searchProducts = async() => {
-    navigate(`/?search=${search}`)
+    if(search === '') {
+      navigate(`/`)
+    } else{
+      navigate(`/?search=${search}`)
+    }
+    
   }
 
 
