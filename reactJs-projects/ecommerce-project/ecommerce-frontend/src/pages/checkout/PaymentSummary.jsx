@@ -7,7 +7,7 @@ const PaymentSummary = ({paymentSummary, getCartData}) => {
   const navigate = useNavigate();
 
   const createOrder= async() => {
-    await axios.post('api/orders');
+    await axios.post('/api/orders');
     await getCartData();
     navigate('/orders');
   }
@@ -44,7 +44,7 @@ const PaymentSummary = ({paymentSummary, getCartData}) => {
               <div className="payment-summary-money">{formatMoney(paymentSummary.totalCostCents)}</div>
             </div>
 
-            <button className="place-order-button button-primary" onClick={createOrder}>
+            <button data-testId="place-order-button" className="place-order-button button-primary" onClick={createOrder}>
               Place your order
             </button>
           </div>
