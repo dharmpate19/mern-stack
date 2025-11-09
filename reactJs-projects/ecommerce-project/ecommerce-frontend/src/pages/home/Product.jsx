@@ -29,7 +29,7 @@ const Product = ({product, getCartData}) => {
   return (
     <div className="product-container">
       <div className="product-image-container">
-        <img className="product-image" src={product.image} />
+        <img data-testId = "product-image" className="product-image" src={product.image} />
       </div>
 
       <div className="product-name limit-text-to-2-lines">{product.name}</div>
@@ -37,6 +37,7 @@ const Product = ({product, getCartData}) => {
       <div className="product-rating-container">
         <img
           className="product-rating-stars"
+          data-testId = "product-rating"
           src={`images/ratings/rating-${product.rating.stars * 10}.png`}
           alt="rating"
         />
