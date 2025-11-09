@@ -27,7 +27,7 @@ const Product = ({product, getCartData}) => {
     setQuantity(Number(e.target.value))
     }
   return (
-    <div className="product-container">
+    <div data-testId="product-container" className="product-container">
       <div className="product-image-container">
         <img data-testId = "product-image" className="product-image" src={product.image} />
       </div>
