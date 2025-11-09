@@ -15,3 +15,7 @@ If you are developing a production application, we recommend using TypeScript wi
 -This vi.fn() creates fake function because real fnction is connected by backend. This is known as Mock
 -To check that our porducts are rendering all things correctly we use screen. screen lets us check he screen or fake web page. To use scree we use expect(screen.getByText().toBeInTheDocument)
 -To test image attribute what we do is we add data-testId in image.
+
+-To create fake axios we use vi.mock('axios') what it does is when we import axios it basicaly create fake version of axios not teh real axios
+-We import library @testing-libraray/user-event we import userevent from that and then we run eevnt user = userEvent.setup() to setup the event then run user.click but this is time takign process so we use async and await and finally in click we padd sunction that what we want tot do when we lick like from screen get by testid so we have added data-testId to that button it clicks that button. After that we want to expect someting so expect(axios.post) we have already created mock of axios we call axios to have been called with and add url and data and las we call that getCartData so that we can get that cart data.
+
