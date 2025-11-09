@@ -11,4 +11,14 @@ it('Displays 2 decimals', () => {
     expect(formatMoney(1090)).toBe('$10.90');
     expect(formatMoney(100)).toBe('$1.00');
 })
+
+it('Works with the 0 number', () => {
+    expect(formatMoney(0)).toBe('$0.00');
+})
+
+it('Works with the -Ve number', () => {
+    expect(formatMoney(-999)).toBe('-$9.99');
+})
+
+
 })
