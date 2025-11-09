@@ -50,6 +50,7 @@ const Product = ({product, getCartData}) => {
 
       <div className="product-quantity-container">
         <select
+          data-testId="product-quantity-selector"
           value={quantity}
           onChange={selectQuantity}
           className="product-quantity-select"
